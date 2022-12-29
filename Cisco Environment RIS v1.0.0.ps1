@@ -5,7 +5,7 @@ https://www.powershellgallery.com/packages/ImportExcel/7.4.1
 To install it run: 
 Install-Module -Name ImportExcel -RequiredVersion 7.4.1
 Import-Module -Name ImportExcel
-This will pull the basic environment from the Cisco Call Manager. 
+This will pull the basic RIS data environment from the Cisco Call Manager. 
 
 It will place the Excel spreadsheet it in the location you enter when prompted. 
 
@@ -128,7 +128,6 @@ Function Get-CUCM_Environment
         }
     }
     $Details|Export-Excel -Path $filelocation -WorksheetName "RISData" -AutoSize -AutoFilter -Show -FreezeTopRow 
-    #Write-DataToExcel $filelocation  $details $tabname
     clv details
 }
 
