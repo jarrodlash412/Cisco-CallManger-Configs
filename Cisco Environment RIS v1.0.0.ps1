@@ -5,11 +5,11 @@ https://www.powershellgallery.com/packages/ImportExcel/7.4.1
 To install it run: 
 Install-Module -Name ImportExcel -RequiredVersion 7.4.1
 Import-Module -Name ImportExcel
-This will pull the basic RIS data environment from the Cisco Call Manager. 
+This will pull the basic environment from the Cisco Call Manager. 
 
 It will place the Excel spreadsheet it in the location you enter when prompted. 
 
-Note: RIS only supports 1000 devices per query, adjust as needed.
+Note: RIS only supports 1000 devices per query, adjust as needed. Line 61 -<soap:MaxReturnedDevices>1000</soap:MaxReturnedDevices>
 https://developer.cisco.com/docs/sxml/#!risport70-api-reference
 #>
 
@@ -34,13 +34,13 @@ Function Get-CUCM_Environment
 
     # Enter CUCM Server
      $cucmServer = Read-Host "Enter CUCM Server IP"
-     $ver = Read-Host "Enter CUCM Verison (ex 10.5, 11.0, 12.5):"
+     $ver = Read-Host "Enter CUCM Verison (ex 10.5, 11.0, 12.5, 14.0):"
     # Max Lines on  Device
     $maxlines = 20
 
     # Enter AXL User/Pass
-    $user = Read-Host "Username"
-    $password = Read-Host "Password"
+    $user = Read-Host "AXL Username"
+    $password = Read-Host "AXL Password"
    
 
     # Set Credentials
@@ -56,6 +56,7 @@ Function Get-CUCM_Environment
         <soapenv:Body>
             <soap:selectCmDevice>
                 <soap:StateInfo></soap:StateInfo>
+
                 <soap:CmSelectionCriteria>
                 <soap:MaxReturnedDevices>1000</soap:MaxReturnedDevices>
                 <soap:DeviceClass>Any</soap:DeviceClass>
