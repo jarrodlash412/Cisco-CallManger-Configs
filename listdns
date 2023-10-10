@@ -1,0 +1,17 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.cisco.com/AXL/API/14.0">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:executeSQLQuery sequence="?">
+<sql>
+select d.name, d.description, n.dnorpattern as DN, rp.name as partition, dp.name as device_pool, e.firstname, e.lastname, e.mailid, e.telephonenumber, e.title, d.tkmodel, d.tkclass, d.tkproduct, tp.name as device_type, rd.lastseen, rd.lastactive, rd.lastknownucm
+
+from device as d, numplan as n, devicenumplanmap as dnpm, routepartition as rp, enduserdevicemap as edmp, enduser e, devicepool dp, TypeProduct tp, registrationdynamic rd
+
+where n.dnorpattern LIKE '%' and dnpm.fkdevice = d.pkid and dnpm.fknumplan = n.pkid and rp.pkid =
+n.fkroutepartition and d.tkclass = 1 and d.pkid = edmp.fkdevice and edmp.fkenduser = e.pkid and d.fkDevicePool = dp.pkid
+and d.tkmodel = tp.tkmodel and d.pkid = rd.fkdevice
+</sql>
+
+</ns:executeSQLQuery>
+   </soapenv:Body>
+</soapenv:Envelope>
